@@ -5,7 +5,39 @@ import java.util.Scanner;
 
 public class InputReader {
 
-    public static List<List<pair>> getGraph() {
+    static public Car getCar(){
+        return car;
+    }
+
+    static private Car car;
+
+    public static void setLocations(List<Location> locations) {
+        InputReader.locations = locations;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public InputVerifier getInputVerifier() {
+        return inputVerifier;
+    }
+
+    public void setInputVerifier(InputVerifier inputVerifier) {
+        this.inputVerifier = inputVerifier;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    InputVerifier inputVerifier;
+
+    public List<List<pair>> getGraph() {
         return graph;
     }
 
@@ -17,14 +49,14 @@ public class InputReader {
 
     private final static HashMap<String, Integer> hashMap = new HashMap<>();
 
-    public static HashMap<String, Integer> getHashMap() {
+    public HashMap<String, Integer> getHashMap() {
         return hashMap;
     }
 
     public int numberOfLocations, numberOfRoads;
     public static List<Location> locations;
 
-    public static Scanner scanner;
+    public  Scanner scanner;
 
     public InputReader() {
         readInput();
@@ -49,13 +81,17 @@ public class InputReader {
     public void readInput()
     {
         initializeScanner();
+        initializeVerifier();
         readLocations();
         readRoads();
+        car = readCar();
     }
 
     private void initializeScanner(){
         scanner = new Scanner(System.in);
     }
+
+    private void initializeVerifier() {inputVerifier = new InputVerifier();};
 
     private void readLocations()  {
 
@@ -66,10 +102,12 @@ public class InputReader {
         {
             Location currentLocation = readLocation(scanner);
 
-            boolean valid = checkLocation(currentLocation);
+            boolean valid = inputVerifier.isAlreadyLocation(currentLocation, locations);
+
             if(!valid)
             {
                 System.out.println("Already given location");
+                i--;
                 continue;
             }
 
@@ -80,15 +118,7 @@ public class InputReader {
         }
 
     }
-    private boolean checkLocation(Location currentLocation)
-    {
-        for(Location location : locations)
-        {
-            if(currentLocation.equals(location))
-                return false;
-        }
-        return true;
-    }
+
 
 
     private Location readLocation(Scanner scanner) {
@@ -118,14 +148,43 @@ public class InputReader {
             String  firstLocation = scanner.next(),
                     secondLocation = scanner.next();
 
-            if(hashMap.get(firstLocation) == null || hashMap.get(secondLocation) == null)
+            if(firstLocation.equals(secondLocation))
             {
-                System.out.println("Unrecognized locations");
+                System.out.println("Cannot add an edge between the same locations");
+                i--;
+                continue;
+            }
+
+            boolean valid = inputVerifier.checkLocation(firstLocation, hashMap)
+                            & inputVerifier.checkLocation(secondLocation, hashMap);
+
+            if(!valid) {
+                System.out.println("The edges doesn't match the already existing location");
+                i--;
                 continue;
             }
 
             int firstHashCode = hashMap.get(firstLocation), secondHashCode = hashMap.get(secondLocation);
             Road road = readRoad();
+
+            valid = inputVerifier.verifyDistance(firstLocation, secondLocation, locations,
+                    road.getLength());
+
+            if(!valid)
+            {
+                System.out.println("The length is greater than the distance between the two locations");
+                i--;
+                continue;
+            }
+
+            valid = inputVerifier.isEdgeIn(firstLocation, secondLocation, graph, hashMap);
+
+            if(valid)
+            {
+                System.out.println("The edge is already part of the graph");
+                i--;
+                continue;
+            }
 
             graph.get(firstHashCode).add(new pair(road, secondHashCode));
             graph.get(secondHashCode).add(new pair(road, firstHashCode));
@@ -161,4 +220,11 @@ public class InputReader {
         _road roadType = readRoadType();
         return new Road(length, speedLimit, roadType);
     }
+
+    private Car readCar()
+    {
+        int speed = scanner.nextInt();
+        return new Car.Builder().buildBrand("Cupra").buildWheels(4).buildEngine(2).buildSpeed(speed).buildCar();
+    }
+
 }

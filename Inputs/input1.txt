@@ -1,0 +1,17 @@
+5
+0 Iasi 4 10
+0 Constanta 1 10
+0 Bacau 5 12
+0 Galati 6 4
+0 Pocreaca 7 120
+6
+Iasi Constanta 1 60 2
+Constanta Bacau 1 100 1
+Galati Iasi 1 54 0
+Pocreaca Bacau 1 100 1
+Iasi Pocreaca 1 53 2
+Galati Pocreaca 1 10 1
+3
+Constanta Pocreaca 1
+Constanta Pocreaca 2
+Constanta Pocreaca 3
