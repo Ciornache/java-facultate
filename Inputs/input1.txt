@@ -11,7 +11,8 @@ Galati Iasi 1 54 0
 Pocreaca Bacau 1 100 1
 Iasi Pocreaca 1 53 2
 Galati Pocreaca 1 10 1
-3
-Constanta Pocreaca 1
-Constanta Pocreaca 2
-Constanta Pocreaca 3
+30
+4
+1 Constanta Pocreaca
+2 Constanta Pocreaca
+3 Constanta Pocreaca

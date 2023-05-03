@@ -11,8 +11,12 @@ public class InputReader {
 
     static private Car car;
 
-    public static void setLocations(List<Location> locations) {
+    public void setLocations(List<Location> locations) {
         InputReader.locations = locations;
+    }
+
+    public List<List<pair>> getRevGraph() {
+        return revGraph;
     }
 
     public Scanner getScanner() {
@@ -45,7 +49,7 @@ public class InputReader {
         InputReader.graph = graph;
     }
 
-    private static List<List<pair>> graph;
+    private static List<List<pair>> graph, revGraph;
 
     private final static HashMap<String, Integer> hashMap = new HashMap<>();
 
@@ -91,7 +95,22 @@ public class InputReader {
         scanner = new Scanner(System.in);
     }
 
-    private void initializeVerifier() {inputVerifier = new InputVerifier();};
+    private void initializeVerifier() {inputVerifier = new InputVerifier();}
+
+    private Location readLocation(Scanner scanner) {
+        return new Location(readLocationType(scanner), readName(scanner), readPosition(scanner));
+    }
+
+    public String readName(Scanner scanner) {
+        return scanner.next();
+    }
+
+    public position readPosition(Scanner scanner){
+        position thisPos = new position();
+        thisPos.x = scanner.nextInt();
+        thisPos.y = scanner.nextInt();
+        return thisPos;
+    }
 
     private void readLocations()  {
 
@@ -119,29 +138,45 @@ public class InputReader {
 
     }
 
+    public _location readLocationType(Scanner scanner){
 
-
-    private Location readLocation(Scanner scanner) {
-        return new Location(readLocationType(scanner), readName(scanner), readPosition(scanner));
+        _location[] arr = _location.values();
+        int type = scanner.nextInt();
+        for(_location loc : arr)
+        {
+            if(loc.ordinal() == type)
+                return loc;
+        }
+        return null;
     }
 
-    public String readName(Scanner scanner) {
-        return scanner.next();
+    public _road readRoadType()
+    {
+        _road[] arr = _road.values();
+        int type = scanner.nextInt();
+        for(_road ro : arr)
+        {
+            if(ro.ordinal() == type)
+                return ro;
+        }
+        return null;
     }
 
-    public position readPosition(Scanner scanner){
-        position thisPos = new position();
-        thisPos.x = scanner.nextInt();
-        thisPos.y = scanner.nextInt();
-        return thisPos;
+    private Road readRoad() {
+        int length = scanner.nextInt();
+        int speedLimit = scanner.nextInt();
+        _road roadType = readRoadType();
+        return new Road(length, speedLimit, roadType);
     }
+
     private void readRoads() {
 
         graph = new ArrayList<>();
-
-        for(int i = 1;i <= numberOfLocations + 2; ++i)
+        revGraph = new ArrayList<>();
+        for(int i = 1;i <= numberOfLocations + 2; ++i) {
             graph.add(new ArrayList<>());
-
+            revGraph.add(new ArrayList<>());
+        }
         numberOfRoads = scanner.nextInt();
         for(int i = 1;i <= numberOfRoads; ++i)
         {
@@ -185,40 +220,13 @@ public class InputReader {
                 i--;
                 continue;
             }
-
             graph.get(firstHashCode).add(new pair(road, secondHashCode));
-            graph.get(secondHashCode).add(new pair(road, firstHashCode));
+            revGraph.get(secondHashCode).add(new pair(road, firstHashCode));
+            if(!road.getType().equals(_road.ONE_WAY_STREET)) {
+                graph.get(secondHashCode).add(new pair(road, firstHashCode));
+                revGraph.get(firstHashCode).add(new pair(road, secondHashCode));
+            }
         }
-    }
-    public _location readLocationType(Scanner scanner){
-
-        _location[] arr = _location.values();
-        int type = scanner.nextInt();
-        for(_location loc : arr)
-        {
-            if(loc.ordinal() == type)
-                return loc;
-        }
-        return null;
-    }
-
-    public _road readRoadType()
-    {
-        _road[] arr = _road.values();
-        int type = scanner.nextInt();
-        for(_road ro : arr)
-        {
-            if(ro.ordinal() == type)
-                return ro;
-        }
-        return null;
-    }
-
-    private Road readRoad() {
-        int length = scanner.nextInt();
-        int speedLimit = scanner.nextInt();
-        _road roadType = readRoadType();
-        return new Road(length, speedLimit, roadType);
     }
 
     private Car readCar()

@@ -7,24 +7,30 @@ public class Waze implements Gps {
 
     private static HashMap<String, Integer> hashMap;
 
+    Stack<Integer> st;
+
     InputReader inputReader;
-    List<List<pair>> graph;
-    int [] dp, parentNode;
+    ArrayList<ArrayList<String>> connectedComponents;
+    List<List<pair>> graph, revGraph;
+    boolean [] check;
+    int [] parentNode;
+    double [] dp;
     public Waze() {
 
         inputReader = new InputReader();
 
         hashMap = inputReader.getHashMap();
         this.graph = inputReader.getGraph();
+        this.revGraph = inputReader.getRevGraph();
 
         initializeUtils();
         limitSpeed = InputReader.getCar().getSpeed();
     }
 
     @Override
-    public int findBestRoad(Location x, Location y) {
+    public double findBestRoad(Location x, Location y) {
 
-        dijkstra(x, y);
+        dijkstra(x);
         int finish = getHashCode(y);
         if(dp[finish] == INF)
             return -1;
@@ -34,7 +40,7 @@ public class Waze implements Gps {
 
     @Override
     public List<pair> getBestRoad(Location x, Location y) {
-        dijkstra(x, y);
+        dijkstra(x);
         int finish = getHashCode(y);
         int start = getHashCode(x);
         return backtrack(start, finish);
@@ -79,7 +85,7 @@ public class Waze implements Gps {
 
     @Override
     public boolean isRoad(Location x, Location y) {
-        dijkstra(x, y);
+        dijkstra(x);
         int finish = getHashCode(y);
         return dp[finish] != -1;
     }
@@ -95,11 +101,14 @@ public class Waze implements Gps {
     private void initializeUtils()
     {
         int n = inputReader.getNumberOfLocations();
-        dp = new int [n + 2];
+        dp = new double [n + 2];
         parentNode = new int [n + 2];
+        connectedComponents = new ArrayList<>();
+        check = new boolean[n + 2];
+        st = new Stack<>();
     }
 
-    private void bfs(Location x, Location y) {
+    private void bfs(Location x) {
 
         resetUtils();
 
@@ -127,8 +136,9 @@ public class Waze implements Gps {
         }
     }
 
-    private void dijkstra(Location x, Location y)
+    private void dijkstra(Location x)
     {
+
         resetUtils();
 
         int startNode = getHashCode(x);
@@ -136,7 +146,7 @@ public class Waze implements Gps {
 
         PriorityQueue<element> pq = new PriorityQueue<>((o1, o2) -> {
 
-            int cost1 = o1.getCost(), cost2 = o2.getCost();
+            double cost1 = o1.getCost(), cost2 = o2.getCost();
 
             int node1 = o1.getNode(), node2 = o2.getNode();
 
@@ -162,7 +172,7 @@ public class Waze implements Gps {
             pq.remove();
 
             int node = el.getNode();
-            int cost = el.getCost();
+            double cost = el.getCost();
 
             if(dp[node] != cost)
                 continue;
@@ -170,9 +180,9 @@ public class Waze implements Gps {
             for(pair p : graph.get(node))
             {
                 int nextNode = p.getNode(), pathCost = p.getRoad().getLength();
-                if(dp[nextNode] > dp[node] + pathCost)
+                if(dp[nextNode] > dp[node] + pathCost / (double)limitSpeed && limitSpeed <= p.getRoad().getSpeedLimit())
                 {
-                    dp[nextNode] = dp[node] + pathCost;
+                    dp[nextNode] = dp[node] + pathCost / (double)limitSpeed;
                     parentNode[nextNode] = node;
                     pq.add(new element(nextNode, dp[nextNode]));
                 }
@@ -240,5 +250,63 @@ public class Waze implements Gps {
         System.out.println();
     }
 
+    private void dfs(Integer x)
+    {
+        check[x] = true;
+        for(pair p : graph.get(x))
+        {
+            Integer nextNode = p.getNode();
+            if(!check[nextNode])
+                dfs(nextNode);
+        }
+        st.add(x);
+    }
 
+    private void dfs2(Integer x, int index)
+    {
+        check[x] = true;
+        connectedComponents.get(index).add(getNameForLocation(x));
+        for(pair p : revGraph.get(x))
+        {
+            Integer nextNode = p.getNode();
+            if(!check[nextNode])
+                dfs2(nextNode, index);
+        }
+    }
+
+    @Override
+    public ArrayList<ArrayList<String>> calculateConnectedComponents() {
+
+        if(connectedComponents.size() != 0)
+            return connectedComponents;
+
+        Arrays.fill(check, false);
+
+        connectedComponents.add(new ArrayList<>());
+
+        for(int i = 1; i <= inputReader.numberOfLocations; ++i)
+        {
+            if(!check[i])
+            {
+                connectedComponents.add(new ArrayList<>());
+                dfs(i);
+            }
+        }
+
+        Arrays.fill(check, false);
+
+        int count = 0;
+        while(!st.isEmpty())
+        {
+            int node = st.peek();
+            if(!check[node])
+            {
+                count++;
+                dfs2(node, count);
+            }
+            st.pop();
+        }
+
+        return connectedComponents;
+    }
 }

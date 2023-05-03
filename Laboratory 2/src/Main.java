@@ -1,33 +1,39 @@
+import java.io.IOException;
 import java.util.*;
 
 
 public class Main {
 
-    public static void main(String [] args)
-    {
+    public static void main(String [] args) throws IOException {
+
+        long startTime = System.currentTimeMillis();
+
         Waze gps = new Waze();
         OutputHandler outputHandler = new OutputHandler();
-
-        gps.printLocations();
-        gps.printRoads();
+        outputHandler.printProblemInstance(gps);
 
         Scanner mainScanner = gps.inputReader.scanner;
 
-        System.out.print(mainScanner.hashCode() + " " + gps.inputReader.hashCode() + "\n");
+//        System.out.print(mainScanner.hashCode() + " " + gps.inputReader.hashCode() + "\n");
 
         int queries = mainScanner.nextInt();
 
         for(int q = 1; q <= queries; ++q)
         {
+            int type = mainScanner.nextInt();
+            if(type == 4)
+            {
+                ArrayList<ArrayList<String>> connectedComponents = gps.calculateConnectedComponents();
+                outputHandler.printConnectedComponents(connectedComponents);
+                continue;
+            }
             Location location1 = readLocationByName(mainScanner, gps);
             Location location2 = readLocationByName(mainScanner, gps);
-
-            int type = mainScanner.nextInt();
 
             switch (type)
             {
                 case 1:
-                    int distance = gps.findBestRoad(location1, location2);
+                    double distance = gps.findBestRoad(location1, location2);
                     outputHandler.printDistance(location1, location2, distance);
                     break;
 
@@ -41,9 +47,19 @@ public class Main {
                     outputHandler.printPathExistence(isPath, location1, location2);
                     break;
             }
-            System.gc();
+
         }
-        System.out.println("All queries read");
+
+
+        long endTime = System.currentTimeMillis(), totalTime = endTime - startTime;
+//        System.out.println("All queries read");
+        Runtime runtime = Runtime.getRuntime();
+        long memory = runtime.totalMemory() - runtime.freeMemory();
+
+        System.out.println("Used memory is " + bytesToMegabytes(memory) + " megabytes");
+        System.out.println("The program lasted for : " + totalTime / 1000 + " seconds");
+
+        System.gc();
     }
 
     private static Location readLocationByName(Scanner scanner, Waze gps)
@@ -54,6 +70,10 @@ public class Main {
             if (location != null)
                 return location;
         }
+    }
+
+    public static long bytesToMegabytes(long bytes) {
+        return bytes / (1024 * 1024);
     }
 
 }
@@ -76,11 +96,11 @@ Galati Iasi 1 54 0
 Pocreaca Bacau 1 100 1
 Iasi Pocreaca 1 53 2
 Galati Pocreaca 1 10 1
+30
 3
 Constanta Pocreaca 1
 Constanta Pocreaca 2
 Constanta Pocreaca 3
-
 
 
  */

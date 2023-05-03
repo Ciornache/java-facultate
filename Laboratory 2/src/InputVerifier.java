@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
-import java.lang.Math.*;
 
 public class InputVerifier {
     public boolean isAlreadyLocation(Location currentLocation, List<Location> locations)

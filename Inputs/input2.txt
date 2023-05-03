@@ -1,0 +1,29 @@
+12
+0 Iasi 1 1
+0 Cluj 10 10
+0 Bucuresti 20 20
+0 Timisoara 30 30
+0 Constanta 40 40
+0 Craiova 50 50
+0 Brasov 60 60
+0 Galati 70 70
+0 Prahova 80 80
+0 Oradea 90 90
+0 Braila 100 100
+0 Arad 110 110
+10
+Bucuresti Timisoara 1 70 2
+Craiova Constanta 5 100 2
+Arad Galati 8 50 4
+Oradea Prahova 8 65 3
+Bucuresti Galati 7 100 0
+Craiova Bucuresti 6 30 1
+Iasi Bucuresti 8 75 2
+Galati Prahova 4 45 1
+Braila Arad 5 65 2
+Galati Brasov 2 80 1
+75
+3
+3 Prahova Oradea
+2 Prahova Braila
+1 Craiova Iasi

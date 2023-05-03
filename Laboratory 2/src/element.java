@@ -2,9 +2,9 @@ public class element {
 
     int node;
 
-    int cost;
+    double cost;
 
-    public element(int node, int cost){
+    public element(int node, double cost){
         setCost(cost);
         setNode(node);
     }
@@ -17,11 +17,11 @@ public class element {
         this.node = node;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
