@@ -1,0 +1,26 @@
+The nodes in the network are : Charlie DrHan Penaldo JokerodeGalati PolodomirPelensky Pessi 
+Sorted by their importance
+The relationships are
+
+Charlie -> Penaldo
+DrHan -> JokerodeGalati
+DrHan -> Pessi
+Penaldo -> Charlie
+Penaldo -> Pessi
+Pessi -> PolodomirPelensky
+Pessi -> DrHan
+Pessi -> Penaldo
+JokerodeGalati -> PolodomirPelensky
+JokerodeGalati -> DrHan
+PolodomirPelensky -> JokerodeGalati
+PolodomirPelensky -> Pessi
+
+The biconnected components are
+2
+Penaldo Charlie 
+2
+Pessi Penaldo 
+4
+Pessi DrHan PolodomirPelensky JokerodeGalati 
+
+Process finished with exit code 0

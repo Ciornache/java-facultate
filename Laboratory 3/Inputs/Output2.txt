@@ -1,0 +1,44 @@
+The nodes in the network are : Sucre DoctorMichaelMorbius XinJinPing TheWoke DreamyBull QuandalePringles Nissan CalistratBogza Felix Modofk 
+Sorted by their importance
+The relationships are
+
+Modofk -> QuandalePringles
+Modofk -> DreamyBull
+Modofk -> Nissan
+Modofk -> DoctorMichaelMorbius
+Nissan -> DreamyBull
+Nissan -> Modofk
+Sucre -> Felix
+CalistratBogza -> QuandalePringles
+CalistratBogza -> Felix
+TheWoke -> XinJinPing
+TheWoke -> Felix
+Felix -> CalistratBogza
+Felix -> Sucre
+Felix -> TheWoke
+DreamyBull -> Nissan
+DreamyBull -> Modofk
+QuandalePringles -> CalistratBogza
+QuandalePringles -> Modofk
+DoctorMichaelMorbius -> Modofk
+XinJinPing -> TheWoke
+
+The biconnected components are
+2
+Felix Sucre 
+2
+TheWoke XinJinPing 
+2
+Felix TheWoke 
+2
+CalistratBogza Felix 
+2
+QuandalePringles CalistratBogza 
+3
+Nissan Modofk DreamyBull 
+2
+Modofk DoctorMichaelMorbius 
+2
+QuandalePringles Modofk 
+
+Process finished with exit code 0
