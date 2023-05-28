@@ -1,0 +1,72 @@
+10
+0
+QuandalePringles
+1945-11-11
+2
+Modofk
+1020-04-22
+420420420.69
+Modolion
+2
+DoctorMichaelMorbius
+0-00-00
+1000000000000.3
+C++ Python Morbing-- Koitlin Huskell React NodeJS
+1
+DreamyBull
+1998-04-12
+1000000.6969
+1
+Nissan
+1944-01-01
+696969669.100000
+0
+XinJinPing
+1960-05-23
+2
+TheWoke
+2000-12-12
+999999.999
+YouAreNotAllowedToPlayGamesMoreThan2HoursPerWeek
+0
+Sucre
+1990-02-11
+2
+Felix
+1996-03-25
+12345678.90
+C# BridgeIncident Java CSS HTML JavaScript
+0
+CalistratBogza
+1500-10-21
+10
+DreamyBull Nissan
+XinJinPing TheWoke
+Felix CalistratBogza
+DreamyBull Modofk
+QuandalePringles Modofk
+Sucre Felix
+TheWoke Felix
+CalistratBogza QuandalePringles
+Modofk DoctorMichaelMorbius
+Nissan Modofk
+5
+Tesla
+0
+Twitter
+2
+DreamyBull
+Nissan
+Youtube
+3
+Felix
+Sucre
+CalistratBogza
+OscorpTowers
+2
+DoctorMichaelMorbius
+Modofk
+Pringles
+1
+QuandalePringles
+2

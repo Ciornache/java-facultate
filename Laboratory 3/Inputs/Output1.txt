@@ -1,0 +1,43 @@
+The nodes is the network are : XinJinPing Sucre DoctorMichaelMorbius Nissan CalistratBogza TheWoke QuandalePringles DreamyBull Felix Modofk 
+Sorted by their importance
+The relationships are
+
+XinJinPing -> TheWoke
+TheWoke -> XinJinPing
+TheWoke -> Felix
+QuandalePringles -> CalistratBogza
+QuandalePringles -> Modofk
+Nissan -> DreamyBull
+Nissan -> Modofk
+CalistratBogza -> QuandalePringles
+CalistratBogza -> Felix
+Modofk -> QuandalePringles
+Modofk -> DreamyBull
+Modofk -> Nissan
+Modofk -> DoctorMichaelMorbius
+Sucre -> Felix
+DoctorMichaelMorbius -> Modofk
+DreamyBull -> Nissan
+DreamyBull -> Modofk
+Felix -> CalistratBogza
+Felix -> Sucre
+Felix -> TheWoke
+
+5 5 XinJinPing
+4 4 TheWoke
+1 1 QuandalePringles
+4 2 Nissan
+2 2 CalistratBogza
+2 2 Modofk
+4 4 Sucre
+3 3 DoctorMichaelMorbius
+3 2 DreamyBull
+3 3 Felix
+The articulation points are
+TheWoke
+QuandalePringles
+CalistratBogza
+Modofk
+Felix
+
+Process finished with exit code 0

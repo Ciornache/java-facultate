@@ -1,0 +1,35 @@
+6
+0
+PolodomirPelensky
+1970-10-10
+2
+Pessi
+2022-12-20
+400000000
+Penalties
+2
+Penaldo
+2020-10-20
+399999999
+Penalties
+1
+JokerodeGalati
+1996-02-12
+5641200
+2
+DrHan
+2000-01-21
+5120410.40
+IAMASURGEON IAMASTURGEON
+0
+Charlie
+1990-04-15
+6
+PolodomirPelensky Pessi
+Pessi Penaldo
+PolodomirPelensky JokerodeGalati
+JokerodeGalati DrHan
+Pessi DrHan
+Penaldo Charlie
+0
+1

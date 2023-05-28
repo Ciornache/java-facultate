@@ -1,0 +1,23 @@
+The nodes in the network are : Charlie JokerodeGalati DrHan Penaldo PolodomirPelensky Pessi 
+Sorted by their importance
+The relationships are
+
+Pessi -> PolodomirPelensky
+Pessi -> DrHan
+Pessi -> Penaldo
+Charlie -> Penaldo
+JokerodeGalati -> PolodomirPelensky
+JokerodeGalati -> DrHan
+DrHan -> JokerodeGalati
+DrHan -> Pessi
+Penaldo -> Charlie
+Penaldo -> Pessi
+PolodomirPelensky -> JokerodeGalati
+PolodomirPelensky -> Pessi
+
+The articulation points are
+Pessi
+Penaldo
+PolodomirPelensky
+
+Process finished with exit code 0
