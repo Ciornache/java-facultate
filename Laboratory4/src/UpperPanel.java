@@ -1,16 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.management.ClassLoadingMXBean;
-import java.util.Vector;
-import java.util.List;
+import java.io.Serializable;
 
-public class UpperPanel extends JPanel {
+public class UpperPanel extends JPanel implements Serializable {
 
     final MainFrame mainFrame;
 
-    public static JComboBox probList;
+    public static JComboBox<Double> probList;
 
     public static JSpinner JSpinnerButton;
 
@@ -53,11 +49,10 @@ public class UpperPanel extends JPanel {
         this.add(button);
     }
 
-    private void initializeProbabilityButton()
-    {
+    private void initializeProbabilityButton() {
         JLabel label2 = new JLabel("Line probability");
         Double [] probabilities = new Double[]{0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.00};
-        probList = new JComboBox(probabilities);
+        probList = new JComboBox<>(probabilities);
         this.add(label2);
         this.add(probList);
 

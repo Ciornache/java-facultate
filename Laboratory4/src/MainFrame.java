@@ -2,11 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Serializable {
 
-    public static UpperPanel upperPanel;
-    public static LowerPanel lowerPanel;
+    public  UpperPanel upperPanel;
+    public  LowerPanel lowerPanel;
 
     public static DrawingPanel drawingPanel;
     public MainFrame()
@@ -19,10 +20,11 @@ public class MainFrame extends JFrame {
         drawingPanel.runGame();
     }
 
-    private void createPanels() {
+    private void createPanels()
+    {
         upperPanel = new UpperPanel(this);
-        lowerPanel = new LowerPanel();
-        drawingPanel = new DrawingPanel();
+        lowerPanel = new LowerPanel(this);
+        drawingPanel = new DrawingPanel(this);
         this.add(upperPanel, BorderLayout.NORTH);
         this.add(lowerPanel, BorderLayout.SOUTH);
         this.add(drawingPanel, BorderLayout.CENTER);
@@ -37,17 +39,17 @@ public class MainFrame extends JFrame {
         this.setBackground(Color.WHITE);
     }
 
-    public void createNewGame()
-    {
+    public void createNewGame() {
         drawingPanel.isDeleted = true;
         this.remove(drawingPanel);
         drawingPanel = null;
         System.gc();
-        drawingPanel = new DrawingPanel();
+        drawingPanel = new DrawingPanel(this);
         add(drawingPanel);
         this.pack();
         drawingPanel.runGame();
     }
+
 
 
 }

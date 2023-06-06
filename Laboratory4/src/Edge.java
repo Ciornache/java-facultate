@@ -1,4 +1,7 @@
-public class Edge {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Edge implements Serializable {
     public int x1, y1, x2, y2;
     public int color;
     Edge(int x1, int y1, int x2, int y2, int color) {
@@ -30,6 +33,19 @@ public class Edge {
 
     public int getColor() {
         return color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge edge = (Edge) o;
+        return x1 == edge.x1 && y1 == edge.y1 && x2 == edge.x2 && y2 == edge.y2 && color == edge.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x1, y1, x2, y2, color);
     }
 
     @Override
