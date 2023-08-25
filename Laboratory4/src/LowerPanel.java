@@ -93,7 +93,7 @@ public class LowerPanel extends JPanel implements Serializable {
         JTextArea textArea = new JTextArea("1");
         textArea.setPreferredSize(new Dimension(30, 25));
         textArea.setFont(new Font("Arial", Font.BOLD, 20));
-        textArea.setForeground(Color.BLUE);
+        textArea.setForeground(Color.BLACK);
         textArea.setBackground(Color.LIGHT_GRAY);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);

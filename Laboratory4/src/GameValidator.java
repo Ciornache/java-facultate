@@ -206,4 +206,24 @@ public class GameValidator implements Serializable {
         }
         return false;
     }
+    public boolean checkForDraw()
+    {
+        List<List<Integer>> graph = drawingPanel.graph;
+        int numberVertices = drawingPanel.numberVertices;
+        for(int i = 0;i < numberVertices; ++i)
+        {
+            for(Integer node : graph.get(i))
+            {
+                if(Objects.equals(i, node))
+                    continue;
+                Edge currentEdge = MainFrame.drawingPanel.getEdge(i, node);
+                if(currentEdge == null)
+                    continue;
+                if(currentEdge.getColor() == 0)
+                    return false;
+            }
+        }
+        return true;
+    }
 }
+

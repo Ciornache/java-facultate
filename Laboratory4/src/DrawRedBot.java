@@ -16,7 +16,7 @@ public class DrawRedBot implements Bot {
     }
 
     private Edge findNextEdge() {
-
+//        System.out.println("HERE");
         Edge blueWin = searchForBlueWin();
         if(blueWin != null)
             return blueWin;
@@ -37,19 +37,33 @@ public class DrawRedBot implements Bot {
                             secondEdge = MainFrame.drawingPanel.getEdge(i, node2);
                     if(currentEdge == null || firstEdge == null || secondEdge == null)
                         continue;
-                    boolean ok = ((currentEdge.color != 2) & (firstEdge.color != 2) & (secondEdge.color != 2));
+//                    System.out.println("VALID EDGES");
+                    boolean ok = ((currentEdge.getColor() != 2) & (firstEdge.getColor() != 2) & (secondEdge.getColor() != 2));
                     if(ok)
                     {
-                        if(currentEdge.color == 0)
+//                        System.out.println("GOT THE EDGE");
+                        if(currentEdge.getColor() == 0)
                             return currentEdge;
-                        if(firstEdge.color == 0)
+                        if(firstEdge.getColor() == 0)
                             return firstEdge;
-                        if(secondEdge.color == 0)
+                        if(secondEdge.getColor() == 0)
                             return secondEdge;
                     }
                 }
             }
         }
+
+        for(int i = 0;i < numberVertices; ++i)
+        {
+            for(Integer node : graph.get(i))
+            {
+                Edge currentEdge = MainFrame.drawingPanel.getEdge(i, node);
+                if(currentEdge != null && currentEdge.getColor() == 0)
+                    return currentEdge;
+            }
+        }
+
+
         return null;
     }
 

@@ -10,6 +10,7 @@ import java.sql.Time;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class DrawingPanel extends JPanel implements Serializable{
@@ -260,16 +261,39 @@ public class DrawingPanel extends JPanel implements Serializable{
 
     public void runGame() {
         gameValidator = new GameValidator();
+        WinRedBot winRedBot = new WinRedBot();
         firstDotX = -1;
         firstDotY = -1;
         secondDotX = -1;
         secondDotY = -1;
+
+
+
+        Timer redTimer = new Timer(1000, e -> {
+           if(turn[0]) {
+               firstDotX = 1;
+               secondDotX = 1;
+           }
+        });
+
+        Timer offTimer = new Timer(100, e -> {
+            if(MainFrame.isBotActive && (int) mainFrame.lowerPanel.JSpinnerButton.getValue() != 2)
+                redTimer.start();
+            else
+                redTimer.stop();
+        });
+
         Timer gameTimer = new Timer(100, e -> {
 
             if(isGameFinished)
                 return;
+            if(gameValidator.checkForDraw() && !isGameFinished)
+            {
+                System.out.print("DRAW");
+                isGameFinished = true;
+            }
 
-            if (!gameValidator.isGood()) {
+            if (!gameValidator.isGood() && !isGameFinished) {
 
                 int ok = (int) mainFrame.lowerPanel.JSpinnerButton.getValue();
                 if(ok == 2)
@@ -287,11 +311,34 @@ public class DrawingPanel extends JPanel implements Serializable{
                 int color = 1;
                 if (!turn[0])
                     color++;
-                boolean ok = setEdgeColor(firstDotX, firstDotY, secondDotX, secondDotY, color);
-                if (ok) {
-                    turn[0] = !turn[0];
-                    repaint();
+
+                if(MainFrame.isBotActive && (int) mainFrame.lowerPanel.JSpinnerButton.getValue() != 2) {
+                    if (color == 1) {
+                        Edge edge = winRedBot.move();
+                        if (Objects.isNull(edge))
+                            System.out.println("FAIL :(");
+                        edge.setColor(1);
+                        coloredEdges.add(new Edge(edge.getX1(), edge.getY1(), edge.getX2(), edge.getY2(), edge.getColor()));
+                    }
+
+                    boolean ok = true;
+                    if (color != 1)
+                        ok = setEdgeColor(firstDotX, firstDotY, secondDotX, secondDotY, color);
+
+                    if (ok) {
+                        turn[0] = !turn[0];
+                        repaint();
+                    }
                 }
+                else
+                {
+                    boolean ok = setEdgeColor(firstDotX, firstDotY, secondDotX, secondDotY, color);
+                    if (ok) {
+                        turn[0] = !turn[0];
+                        repaint();
+                    }
+                }
+
                 firstDotX = -1;
                 firstDotY = -1;
                 secondDotX = -1;
@@ -302,6 +349,7 @@ public class DrawingPanel extends JPanel implements Serializable{
             }
         });
         gameTimer.start();
+        offTimer.start();
     }
 
     public Edge getEdge(int node1, int node2) {

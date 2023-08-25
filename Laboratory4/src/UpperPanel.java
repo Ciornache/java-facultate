@@ -36,6 +36,7 @@ public class UpperPanel extends JPanel implements Serializable {
         this.add(JSpinnerButton);
         initializeProbabilityButton();
         initializeDrawNewGameButton();
+        initializeBotButton();
     }
 
     private void initializeDrawNewGameButton() {
@@ -56,6 +57,18 @@ public class UpperPanel extends JPanel implements Serializable {
         this.add(label2);
         this.add(probList);
 
+    }
+
+    private void initializeBotButton() {
+        JCheckBox botButton = new JCheckBox("Bot");
+        botButton.addActionListener(e -> {
+            if((int) mainFrame.lowerPanel.JSpinnerButton.getValue() == 2)
+                MainFrame.isBotActive = false;
+            else
+                MainFrame.isBotActive = botButton.isSelected();
+
+        });
+        this.add(botButton);
     }
 
 }

@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public class MainFrame extends JFrame implements Serializable {
 
+    public static int gameMode = 1;
+    public static boolean isBotActive = false;
     public  UpperPanel upperPanel;
     public  LowerPanel lowerPanel;
 
