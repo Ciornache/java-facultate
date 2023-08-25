@@ -48,6 +48,7 @@ public class Edge implements Serializable {
         return Objects.hash(x1, y1, x2, y2, color);
     }
 
+    
     @Override
     public String toString() {
         return "Edge{" +

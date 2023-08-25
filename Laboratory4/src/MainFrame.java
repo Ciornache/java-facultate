@@ -39,7 +39,8 @@ public class MainFrame extends JFrame implements Serializable {
         this.setBackground(Color.WHITE);
     }
 
-    public void createNewGame() {
+    public void createNewGame()
+    {
         drawingPanel.isDeleted = true;
         this.remove(drawingPanel);
         drawingPanel = null;

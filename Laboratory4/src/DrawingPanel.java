@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.Time;
 
@@ -13,6 +14,7 @@ import java.util.Scanner;
 
 public class DrawingPanel extends JPanel implements Serializable{
 
+    private boolean isGameFinished = false;
     private MainFrame mainFrame;
 
     final boolean[] turn = {true};
@@ -41,7 +43,8 @@ public class DrawingPanel extends JPanel implements Serializable{
     public List<Integer> x, y, pointColors;
     public int numberVertices;
 
-    private void initializeDrawingPanel() {
+    private void initializeDrawingPanel()
+    {
         setColor();
         createVertices();
         createEdges();
@@ -55,6 +58,9 @@ public class DrawingPanel extends JPanel implements Serializable{
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(isGameFinished)
+                    return;
+
                 int point = findPointByCoordinates(e.getX(), e.getY());
                 if (point != -1 && pointColors.get(point) == 0) {
                     pointColors.set(point, 1);
@@ -136,11 +142,11 @@ public class DrawingPanel extends JPanel implements Serializable{
     }
 
     private void drawVertices(Graphics2D g) {
-        System.out.println("Drawing Vertices");
+//        System.out.println("Drawing Vertices");
         numberVertices = (int) mainFrame.upperPanel.JSpinnerButton.getValue();
         g.setColor(Color.BLACK);
 //        g.setStroke(new BasicStroke(10));
-        System.out.println("Paint Component Method Called");
+//        System.out.println("Paint Component Method Called");
         for (int i = 0; i < numberVertices; ++i) {
             if(pointColors.get(i) == 0)
                 g.setColor(Color.BLACK);
@@ -161,6 +167,7 @@ public class DrawingPanel extends JPanel implements Serializable{
                 g.setColor(Color.RED);
             else
                 g.setColor(Color.BLUE);
+//            System.out.println(currentEdge);
             g.drawLine(currentEdge.getX1() + circleSize / 2, currentEdge.getY1() + circleSize / 2,
                     currentEdge.getX2() + circleSize / 2, currentEdge.getY2() + circleSize / 2);
         }
@@ -213,6 +220,8 @@ public class DrawingPanel extends JPanel implements Serializable{
                 if (currentEdge.getColor() != 0)
                     return false;
 
+                currentEdge.setColor(color);
+                coloredEdges.add(currentEdge);
                 for(Edge edge : coloredEdges) {
                     if(edge.equals(currentEdge))
                     {
@@ -230,11 +239,13 @@ public class DrawingPanel extends JPanel implements Serializable{
                 if (currentEdge.getColor() != 0)
                     return false;
 
-                for(Edge edge : coloredEdges) {
-                    if(edge.equals(currentEdge))
-                    {
-                        coloredEdges.remove(edge);
-                        break;
+               currentEdge.setColor(color);
+               coloredEdges.add(currentEdge);
+               for(Edge edge : coloredEdges) {
+                   if(edge.equals(currentEdge))
+                   {
+                       coloredEdges.remove(edge);
+                       break;
                     }
                 }
 
@@ -255,12 +266,21 @@ public class DrawingPanel extends JPanel implements Serializable{
         secondDotY = -1;
         Timer gameTimer = new Timer(100, e -> {
 
+            if(isGameFinished)
+                return;
+
             if (!gameValidator.isGood()) {
+
+                int ok = (int) mainFrame.lowerPanel.JSpinnerButton.getValue();
+                if(ok == 2)
+                    turn[0] = !turn[0];
+
                 if (turn[0])
                     System.out.println("BLUE WON");
                 else
                     System.out.println("RED WON");
                 ((Timer) e.getSource()).stop();
+                isGameFinished = true;
             }
 
             if (firstDotX != -1 && secondDotX != -1) {
@@ -307,12 +327,15 @@ public class DrawingPanel extends JPanel implements Serializable{
     }
 
 
-    public void resetColors() {
+    public void resetColors()
+    {
         for (Edge edge : edges) edge.setColor(0);
         coloredEdges.clear();
         coloredEdges.addAll(edges);
         turn[0] = true;
+        isGameFinished = false;
         this.repaint();
+        runGame();
     }
 
     protected void writeObjectToFile(MainFrame mainFrame) throws IOException {
@@ -343,6 +366,7 @@ public class DrawingPanel extends JPanel implements Serializable{
 
     public void updateDrawingPanel(DrawingPanel newDrawingPanel) {
         // Update the fields one by one
+
         this.mainFrame = newDrawingPanel.mainFrame;
         this.turn[0] = newDrawingPanel.turn[0];
         this.coloredEdges.clear();
@@ -359,6 +383,11 @@ public class DrawingPanel extends JPanel implements Serializable{
         this.edges = new ArrayList<>(newDrawingPanel.edges);
         this.pointColors = new ArrayList<>(newDrawingPanel.pointColors);
         this.numberVertices = newDrawingPanel.numberVertices;
+
+
+//        numberVertices = (int) mainFrame.upperPanel.JSpinnerButton.getValue();
+//        System.out.println(newDrawingPanel.numberVertices);
+
         // Update other fields as needed
 
         // Call any initialization methods again if required
@@ -367,5 +396,13 @@ public class DrawingPanel extends JPanel implements Serializable{
         this.repaint();
     }
 
-
+//    private void createOffscreenImage() {
+//        Graphics2D graphics;
+//        BufferedImage image = new BufferedImage(W, H, BufferedImage.TYPE_INT_ARGB);
+//        graphics = image.createGraphics();
+//        graphics.setRenderingHint(
+//                RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        graphics.setColor(Color.WHITE);
+//        graphics.fillRect(0, 0, 800, 600);
+//    }
 }

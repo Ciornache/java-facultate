@@ -6,9 +6,9 @@ public class UpperPanel extends JPanel implements Serializable {
 
     final MainFrame mainFrame;
 
-    public static JComboBox<Double> probList;
+    public JComboBox<Double> probList;
 
-    public static JSpinner JSpinnerButton;
+    public JSpinner JSpinnerButton;
 
     UpperPanel(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
