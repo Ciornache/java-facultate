@@ -1,0 +1,3 @@
+java -jar Laboratory4.jar
+
+Make sure your Java Runtime Version is equal or higher than the Java Runtime Version in which it was compilled.
