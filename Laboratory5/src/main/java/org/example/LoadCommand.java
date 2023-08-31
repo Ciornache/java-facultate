@@ -14,14 +14,11 @@ public class LoadCommand implements Command{
         int index = Main.scanner.nextInt();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        StringBuilder path = new StringBuilder("D:/Documents/java-facultate/Laborator 5/cataloage/catalog");
+        StringBuilder path = new StringBuilder("D:/Documents/java-facultate/Laboratory5/cataloage/catalog");
         path.append(Integer.toString(index));
         path.append(".json");
 
-        System.out.println(path);
-
         Catalog catalog = objectMapper.readValue(new File(String.valueOf(path)), Catalog.class);
-        System.out.println(catalog);
         Main.changeCatalog(catalog);
     }
 

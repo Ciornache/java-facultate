@@ -1,11 +1,12 @@
 package org.example;
 
+import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.util.List;
 
 public class CommandHandler {
 
-    private final List<String> commandList = List.of(new String[]{"add", "save", "list", "load", "view"});
+    private final List<String> commandList = List.of(new String[]{"add", "save", "list", "load", "view", "close", "color"});
 
     private final AddCommand addCommand;
     private final ListCommand listCommand;
@@ -14,15 +15,18 @@ public class CommandHandler {
 
     private final ViewCommand viewCommand;
 
+    private final GraphColor graphColor;
+
     public CommandHandler() {
         saveCommand = new SaveCommand();
         loadCommand = new LoadCommand();
         listCommand = new ListCommand();
         addCommand = new AddCommand();
         viewCommand = new ViewCommand();
+        graphColor = new GraphColor();
     }
 
-    public void execute(String command) throws IncorrectCommandName, IOException, InvalidDocumentName {
+    public void execute(String command) throws IncorrectCommandName, IOException, InvalidDocumentName, RedundantObjectException, DocumentFormatException {
 
         boolean ok = checkCommand(command);
         if(!ok)
@@ -44,6 +48,13 @@ public class CommandHandler {
                 break;
             case "view":
                 viewCommand.execute();
+                break;
+            case "close":
+                System.exit(0);
+                break;
+            case "color":
+                int colors = graphColor.execute();
+                System.out.println("The graph can be colored with a minimum of " + colors + " colors");
                 break;
         }
     }
@@ -79,5 +90,9 @@ public class CommandHandler {
 
     public ViewCommand getViewCommand() {
         return viewCommand;
+    }
+
+    public GraphColor getGraphColor() {
+        return graphColor;
     }
 }

@@ -10,8 +10,6 @@ import java.util.function.DoubleConsumer;
 
 public class Catalog {
 
-    private final Map<Document, Boolean> documentHandler;
-
     private final CommandHandler commandHandler;
 
     private List<Document> documentList;
@@ -19,10 +17,9 @@ public class Catalog {
     Catalog() {
         commandHandler = new CommandHandler();
         documentList = new ArrayList<>();
-        documentHandler = new HashMap<>();
     }
 
-    public void process(String command) throws IncorrectCommandName, IOException, InvalidDocumentName {
+    public void process(String command) throws IncorrectCommandName, IOException, InvalidDocumentName, RedundantObjectException, DocumentFormatException {
         commandHandler.execute(command);
     }
 
@@ -48,19 +45,27 @@ public class Catalog {
     }
 
     public boolean isDocumentIn(Document doc) {
-        return documentHandler.containsKey(doc);
-    }
-
-    public void setDocument(Document doc) {
-        documentHandler.put(doc, true);
+        for(Document currDoc : documentList) {
+            if(currDoc.equals(doc))
+                return true;
+        }
+        return false;
     }
 
     @Override
     public String toString() {
         return "Catalog{" +
-                "documentHandler=" + documentHandler +
+                "documentHandler="  +
                 ", commandHandler=" + commandHandler +
                 ", documentList=" + documentList +
                 '}';
+    }
+
+    public Document getDocumentById(int id) {
+        for(Document doc : documentList) {
+            if(doc.getId() == id)
+                return doc;
+        }
+        return null;
     }
 }

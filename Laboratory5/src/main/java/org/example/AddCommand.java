@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddCommand implements Command {
 
     private String text;
@@ -9,12 +12,13 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws RedundantObjectException, DocumentFormatException {
 
         this.readText();
         boolean ok = checkCommand(text);
-        if(!ok)
-            return;
+        if(!ok){
+            throw new DocumentFormatException("Invalid Document Format");
+        }
 
         Document document = new Document();
         int number = 0;
@@ -25,7 +29,7 @@ public class AddCommand implements Command {
             while(i < text.length())
             {
                 char c = text.charAt(i);
-                if(c == ' ')
+                if(c == ',')
                     break;
                 currentText.append(c);
                 i++;
@@ -41,27 +45,45 @@ public class AddCommand implements Command {
         }
         ok = Main.catalog.isDocumentIn(document);
         if(!ok) {
+            List<String> tags = readTags();
+            document.setId(Main.catalog.getDocumentList().size() + 1);
+            document.setTagList(tags);
             Main.catalog.getDocumentList().add(document);
-            Main.catalog.setDocument(document);
-            document.setId(Main.catalog.getDocumentList().size());
+
+        }
+        else {
+            throw new RedundantObjectException("Document Already in Catalog");
         }
     }
 
     private boolean checkCommand(String text) {
-        int spaces = 0;
+        int comma = 0;
         for(int i = 0;i < text.length(); ++i){
-            if(text.charAt(i) == ' ')
-                spaces++;
+            if(text.charAt(i) == ',')
+                comma++;
         }
-        return spaces == 7;
+        return comma == 7;
     }
 
-    public String getText() {
-        return text;
-    }
+    private List<String> readTags() {
 
-    public void setText(String text) {
-        this.text = text;
+        String tags = Main.scanner.nextLine();
+        List<String> tagList = new ArrayList<>();
+
+        for(int i = 0;i < tags.length(); ++i) {
+            StringBuilder tag = new StringBuilder();
+            while(i < tags.length())
+            {
+                char c = tags.charAt(i);
+                if(c == ' ')
+                    break;
+                tag.append(c);
+                i++;
+            }
+            tagList.add(tag.toString());
+        }
+
+        return tagList;
     }
 }
 

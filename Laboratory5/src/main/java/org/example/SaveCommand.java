@@ -15,7 +15,7 @@ public class SaveCommand implements Command {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
-        StringBuilder path = new StringBuilder("///D:/Documents/java-facultate/Laborator 5/cataloage/catalog");
+        StringBuilder path = new StringBuilder("D:/Documents/java-facultate/Laboratory5/cataloage/catalog");
         path.append(Integer.toString((int) (Math.random() * 1000)));
         path.append(".json");
         System.out.println(path);

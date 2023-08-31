@@ -3,7 +3,7 @@ package org.example;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Logger;
+
 
 public class Main {
 
@@ -21,19 +21,33 @@ public class Main {
             try {
                 catalog.process(command);
             }
-            catch(Exception e) {
-                String text = e.getMessage();
-                if(e.getClass() == NullPointerException.class)
-                    System.out.println("NULL POINTER EXCEPTION");
-                else
-                    System.out.println(text);
+            catch(NullPointerException e) {
+                System.out.println("NULL POINTER EXCEPTION");
+            }
+            catch(RedundantObjectException e) {
+                System.out.println("OBJECT ALREADY PRESENT IN THE CATALOG");
+            }
+            catch(InvalidDocumentName e) {
+                System.out.println("OBJECT NOT PRESENT IN THE CATALOG");
+            }
+            catch (IncorrectCommandName e) {
+                System.out.println("WRONG COMMAND");
+                System.out.print("ONLY USABLE COMMANDS ARE ");
+                for(String comm : catalog.getCommandHandler().getCommandList())
+                    System.out.print(comm.toUpperCase() + " ");
+                System.out.println();
+            }
+            catch(DocumentFormatException e) {
+                System.out.println(e.getMessage());
             }
         }
+
+        scanner.close();
+        System.gc();
     }
 
     public static void changeCatalog(Catalog catalog) {
         Main.catalog = catalog;
     }
-
 
 }

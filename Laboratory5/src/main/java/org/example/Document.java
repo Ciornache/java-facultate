@@ -1,7 +1,12 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Document {
 
+    List<String> tagList = new ArrayList<>();
     public int id;
     private String path, documentType;
     private DocInfo docInfo;
@@ -83,4 +88,24 @@ public class Document {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Document document = (Document) o;
+        return Objects.equals(path, document.path) && Objects.equals(documentType, document.documentType) && Objects.equals(docInfo, document.docInfo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, path, documentType, docInfo);
+    }
+
+    public List<String> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<String> tagList) {
+        this.tagList = tagList;
+    }
 }
