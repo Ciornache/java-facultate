@@ -1,0 +1,33 @@
+5
+Ed Sheeran
+Adele
+Taylor Swift
+Beyoncé
+Coldplay
+4
+Pop
+Rock
+R&B
+Country
+3
+X&Y
+2005
+1
+3
+Pop
+Rock
+R&B
+3
+25
+2015
+2
+2
+Pop
+Country
+2
+Folklore
+2020
+3
+2
+Rock
+Country

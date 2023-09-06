@@ -1,0 +1,74 @@
+/******  Create Entities ******\
+
+CREATE TABLE artist(
+      artist_id INT NOT NULL,
+      name VARCHAR(60) NOT NULL, 
+      CONSTRAINT PK_Artist Primary Key(artist_id));
+
+CREATE TABLE album(
+    album_id INT NOT NULL,
+    release_year VARCHAR(6) NOT NULL,
+    title VARCHAR(60) NOT NULL,
+    artist_id INT NOT NULL,
+    CONSTRAINT PK_Album Primary Key(album_id),
+    CONSTRAINT FK_Album Foreign Key(artist_id) REFERENCES artist(artist_id));
+
+
+CREATE TABLE genre(
+      genre_id INT NOT NULL, 
+      name VARCHAR(50) NOT NULL,
+      CONSTRAINT PK1_GENRES Primary Key(genre_id));
+
+CREATE TABLE albumgenre(
+	albumgenre_id INT NOT NULL,
+        album_id INT NOT NULL,
+        genre_id INT NOT NULL, 
+        CONSTRAINT PK_albumgenre Primary Key(albumgenre_id),
+        CONSTRAINT FK_albumgenre Foreign Key(album_id) References album(album_id),
+	CONSTRAINT FK2_albumgenre Foreign Key(genre_id) references genre(genre_id));
+
+/****** Populate Entities ******\
+
+INSERT INTO artist (artist_id, name)
+VALUES (1, 'Artist 1');
+
+INSERT INTO artist (artist_id, name)
+VALUES (2, 'Artist 2');
+
+INSERT INTO artist (artist_id, name)
+VALUES (3, 'Artist 3');
+
+INSERT INTO genre (genre_id, name)
+VALUES (1, 'Rock');
+
+INSERT INTO genre (genre_id, name)
+VALUES (2, 'Pop');
+
+INSERT INTO genre (genre_id, name)
+VALUES (3, 'Hip-Hop');	
+
+INSERT INTO album (album_id, release_year, title, artist_id)
+VALUES (1, '2020', 'Album 1', 1);
+
+INSERT INTO album (album_id, release_year, title, artist_id)
+VALUES (2, '2019', 'Album 2', 2);
+
+INSERT INTO album (album_id, release_year, title, artist_id)
+VALUES (3, '2021', 'Album 3', 1);
+
+INSERT INTO albumgenre (albumgenre_id, album_id, genre_id)
+VALUES (1, 1, 1);
+
+INSERT INTO albumgenre (albumgenre_id, album_id, genre_id)
+VALUES (2, 1, 2);
+
+INSERT INTO albumgenre (albumgenre_id, album_id, genre_id)
+VALUES (3, 2, 2);
+
+INSERT INTO albumgenre (albumgenre_id, album_id, genre_id)
+VALUES (4, 3, 3);
+
+
+
+     
+             
