@@ -18,11 +18,13 @@ public class AlbumGenresDAO {
     void addAlbumGenre(int artist_id, int genre_id) {
         try {
             Connection connection = Database.getConnection();
-            CallableStatement st = (CallableStatement) connection.createStatement();
+            Statement st = connection.createStatement();
             int primaryKey = this.getMaximumPrimaryKey() + 1;
-            String sqlStatement = String.format("INSERT INTO TABLE albumgenre VALUES(" +
+            String sqlStatement = String.format("INSERT INTO albumgenre VALUES(" +
                     Integer.toString(primaryKey) + ',' + Integer.toString(artist_id) + ',' + Integer.toString(genre_id) + ");");
+//            System.out.println(sqlStatement);
             st.executeUpdate(sqlStatement);
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -38,7 +40,9 @@ public class AlbumGenresDAO {
             String sqlStatament = "SELECT MAX(albumgenre_id) from albumgenre;";
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
-            return resultSet.getInt(1);
+            int val = resultSet.getInt(1);
+            connection.close();
+            return val;
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -48,12 +52,12 @@ public class AlbumGenresDAO {
     }
 
     public List<String> getGenreByAlbum(Album album) {
-
+        System.out.println(album);
         List<String> genreList = new ArrayList<>();
         try {
             Connection connection = Database.getConnection();
             Statement st = connection.createStatement();
-            String sqlStatement = String.format("SELECT genre.name from albums as al \n" +
+            String sqlStatement = String.format("SELECT genre.name from album as al \n" +
                     "INNER JOIN albumgenre as ag ON al.album_id = ag.album_id\n" +
                     "INNER JOIN genre ON ag.genre_id = genre.genre_id\n" +
                     "WHERE al.album_id = %2d;", album.getAlbum_id());
@@ -61,6 +65,7 @@ public class AlbumGenresDAO {
             while (resultSet.next()) {
                 genreList.add(resultSet.getString(1));
             }
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -73,7 +78,7 @@ public class AlbumGenresDAO {
         try {
             Connection connection = Database.getConnection();
             Statement st = connection.createStatement();
-            String sqlStatement = String.format("SELECT album.title from albums as al \n" +
+            String sqlStatement = String.format("SELECT album.title from album as al \n" +
                     "INNER JOIN albumgenre as ag ON al.album_id = ag.album_id\n" +
                     "INNER JOIN genre ON ag.genre_id = genre.genre_id\n" +
                     "WHERE genre.genre_id = %2d;", genre.getGenre_id());
@@ -81,11 +86,25 @@ public class AlbumGenresDAO {
             while(resultSet.next()){
                 albumList.add(resultSet.getString(1));
             }
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
         }
         return albumList;
+    }
+
+
+    public void deleteAll() {
+        try {
+            Connection connection = Database.getConnection();
+            Statement st = connection.createStatement();
+            st.executeUpdate("Delete from albumgenre;");
+            connection.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

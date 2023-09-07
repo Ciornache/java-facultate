@@ -24,12 +24,14 @@ public  class ArtistDAO {
     }
 
     public void removeArtist(Artist artist) throws SQLException, ClassNotFoundException {
-        Connection connection = Database.getConnection();
+
         try {
+            Connection connection = Database.getConnection();
             Statement st = connection.createStatement();
             String sqlStatament = String.format("DELETE FROM artist where artist.id = %2d;", artist.getId());
             st.executeUpdate(sqlStatament);
             artistList.remove(artist);
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -37,13 +39,14 @@ public  class ArtistDAO {
     }
 
     public void addArtist(Artist artist) throws SQLException, ClassNotFoundException {
-        Connection connection = Database.getConnection();
         try {
+            Connection connection = Database.getConnection();
             Statement st = connection.createStatement();
             String sqlInsert = "INSERT INTO artist VALUES(" + artist.insertForm() + ");";
-            System.out.println(sqlInsert);
+//            System.out.println(sqlInsert);
             st.executeUpdate(sqlInsert);
             artistList.add(artist);
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -64,6 +67,7 @@ public  class ArtistDAO {
                     artist.append(resultSet.getString(i + 1)).append(" ");
                 System.out.println(artist);
             }
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -83,11 +87,12 @@ public  class ArtistDAO {
         try {
             Connection connection = Database.getConnection();
             Statement st = connection.createStatement();
-
-            String sqlStatament = "SELECT MAX(id) from artist;";
+            String sqlStatament = "SELECT MAX(artist_id) from artist;";
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
-            return resultSet.getInt(1);
+            int val = resultSet.getInt(1);
+            connection.close();
+            return val;
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -103,7 +108,9 @@ public  class ArtistDAO {
             String sqlStatament = String.format("SELECT * from artist WHERE artist.id = %2d;", id);
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
-            return new Artist(resultSet.getInt(1), resultSet.getString(2));
+            Artist artist = new Artist(resultSet.getInt(1), resultSet.getString(2));
+            connection.close();
+            return artist;
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -118,12 +125,26 @@ public  class ArtistDAO {
             String sqlStatament = String.format("SELECT * from artist WHERE artist.name = %s;", name);
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
+            connection.close();
             return new Artist(resultSet.getInt(1), resultSet.getString(2));
         }
         catch(Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    public void deleteAll() {
+        try {
+            Connection connection = Database.getConnection();
+            Statement st = connection.createStatement();
+            st.executeUpdate("Delete from artist;");
+            connection.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

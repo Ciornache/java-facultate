@@ -62,7 +62,7 @@ public class Album {
         StringBuilder sqlInsertForm = new StringBuilder(Integer.toString(album_id));
         sqlInsertForm.append(',' + "'").append(releaseDateYear).append("'");
         sqlInsertForm.append(',' + "'").append(title).append("'");
-        sqlInsertForm.append(',').append(artist_id).append("'");
+        sqlInsertForm.append(',').append(artist_id);
         return Objects.toString(sqlInsertForm);
     }
 }

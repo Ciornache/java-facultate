@@ -36,13 +36,15 @@ public class GenreDAO {
     }
 
     public void addGenre(Genre genre) throws SQLException, ClassNotFoundException {
-        Connection connection = Database.getConnection();
+
         try {
+            Connection connection = Database.getConnection();
             Statement st = connection.createStatement();
             String sqlInsert = "INSERT INTO genre VALUES(" + genre.insertForm() + ");";
-            System.out.println(sqlInsert);
+//            System.out.println(sqlInsert);
             st.executeUpdate(sqlInsert);
             genreList.add(genre);
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -63,6 +65,7 @@ public class GenreDAO {
                     artist.append(resultSet.getString(i + 1)).append(" ");
                 System.out.println(artist);
             }
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -86,7 +89,9 @@ public class GenreDAO {
             String sqlStatament = "SELECT MAX(genre_id) from genre;";
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
-            return resultSet.getInt(1);
+            int value = resultSet.getInt(1);
+            connection.close();
+            return value;
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -102,7 +107,9 @@ public class GenreDAO {
             String sqlStatament = String.format("SELECT * from genre WHERE artists.genre_id = %2d;", id);
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
-            return new Genre(resultSet.getInt(1), resultSet.getString(2));
+            Genre genre = new Genre(resultSet.getInt(1), resultSet.getString(2));
+            connection.close();
+            return genre;
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -110,14 +117,16 @@ public class GenreDAO {
         return null;
     }
 
-    public Artist findGenreByName(String name) {
+    public Genre findGenreByName(String name) {
         try {
             Connection connection = Database.getConnection();
             Statement st = connection.createStatement();
             String sqlStatament = String.format("SELECT * from genre WHERE genre.name = %s;", name);
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
-            return new Artist(resultSet.getInt(1), resultSet.getString(2));
+            Genre genre = new Genre(resultSet.getInt(1), resultSet.getString(2));
+            connection.close();
+            return genre;
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -135,5 +144,18 @@ public class GenreDAO {
                 return genr.getGenre_id();
         }
         throw new InvalidGenreException("Invalid Genre. Not found in the database");
+    }
+
+
+    public void deleteAll() {
+        try {
+            Connection connection = Database.getConnection();
+            Statement st = connection.createStatement();
+            st.executeUpdate("Delete from genre;");
+            connection.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }

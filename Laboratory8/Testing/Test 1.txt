@@ -1,0 +1,29 @@
+5
+John Lennon
+Paul McCartney
+George Harrison
+Ringo Starr
+Elton John
+3
+Rock
+Pop
+Country
+3
+Abbey Road
+1969
+1
+2
+Rock
+Pop
+Thriller
+1982
+2
+1
+Pop
+Yellow Brick Road
+1973
+5
+3
+Rock
+Pop
+Country

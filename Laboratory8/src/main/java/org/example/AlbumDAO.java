@@ -15,7 +15,7 @@ public class AlbumDAO {
     private static AlbumDAO instance = null;
 
     private AlbumDAO() throws SQLException, ClassNotFoundException {
-        initiateAlbumList();
+//        initiateAlbumList();
     }
 
     public static AlbumDAO getInstance() throws SQLException, ClassNotFoundException {
@@ -30,9 +30,10 @@ public class AlbumDAO {
             connection = Database.getConnection();
             Statement st = connection.createStatement();
             String sqlStatement = "INSERT INTO ALBUM VALUES(" + album.insertForm() + ");";
-            System.out.println(sqlStatement);
+//            System.out.println(sqlStatement);
             st.executeUpdate(sqlStatement);
             albumList.add(album);
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -47,6 +48,7 @@ public class AlbumDAO {
             String sqlStatament = String.format("DELETE FROM album WHERE album.album_id = %2d;", album_id);
             st.executeUpdate(sqlStatament);
             albumList.remove(album);
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -70,7 +72,9 @@ public class AlbumDAO {
             String sqlStatement = String.format("SELECT * from album WHERE album.album_id = %2d;", album_id);
             ResultSet resultSet = st.executeQuery(sqlStatement);
             resultSet.next();
-            return new Album(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4));
+            Album album = new Album(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4));
+            connection.close();
+            return album;
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -87,6 +91,7 @@ public class AlbumDAO {
             while(resultSet.next()) {
                 albumList.add(new Album(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4)));
             }
+            connection.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -107,7 +112,9 @@ public class AlbumDAO {
             String sqlStatament = "SELECT MAX(album_id) from album;";
             ResultSet resultSet = st.executeQuery(sqlStatament);
             resultSet.next();
-            return resultSet.getInt(1);
+            int val = resultSet.getInt(1);
+            connection.close();
+            return val;
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -115,6 +122,27 @@ public class AlbumDAO {
 
         return 0;
     }
+
+    public Album getRandomAlbum() {
+        double rand = Math.random() * (double) albumList.size();
+        if((int)(rand) == 0)
+            return albumList.get(0);
+        else
+            return albumList.get((int)(rand) - 1);
+    }
+
+    public void deleteAll() {
+        try {
+            Connection connection = Database.getConnection();
+            Statement st = connection.createStatement();
+            st.executeUpdate("Delete from album;");
+            connection.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     ///CRUD
 

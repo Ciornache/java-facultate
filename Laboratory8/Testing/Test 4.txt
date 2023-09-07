@@ -1,0 +1,62 @@
+15
+John Lennon
+Paul McCartney
+George Harrison
+Ringo Starr
+Elton John
+Bob Dylan
+David Bowie
+Elvis Presley
+Freddy Mercury
+Stevie Wonder
+Mick Jagger
+Keith Richards
+Tina Turner
+Beyonce
+Michael Jackson
+6
+Rock
+Pop
+Country
+Jazz
+Blues
+R&B
+6
+Abbey Road
+1969
+1
+2
+Rock
+Pop
+Thriller
+1982
+2
+1
+Pop
+Yellow Brick Road
+1973
+5
+3
+Rock
+Pop
+Country
+Born to Run
+1975
+7
+4
+Rock
+Country
+Jazz
+Purple Rain
+1984
+8
+5
+Pop
+R&B
+Off the Wall
+1979
+6
+3
+Pop
+R&B
+Jazz

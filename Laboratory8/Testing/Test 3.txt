@@ -1,0 +1,49 @@
+10
+John Lennon
+Paul McCartney
+George Harrison
+Ringo Starr
+Elton John
+Bob Dylan
+David Bowie
+Elvis Presley
+Freddy Mercury
+Stevie Wonder
+5
+Rock
+Pop
+Country
+Jazz
+Blues
+5
+Abbey Road
+1969
+1
+2
+Rock
+Pop
+Thriller
+1982
+2
+1
+Pop
+Yellow Brick Road
+1973
+5
+3
+Rock
+Pop
+Country
+Born to Run
+1975
+7
+4
+Rock
+Country
+Jazz
+Purple Rain
+1984
+8
+5
+Pop
+R&B
