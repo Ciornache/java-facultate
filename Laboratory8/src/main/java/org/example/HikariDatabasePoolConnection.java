@@ -20,7 +20,7 @@ public class HikariDatabasePoolConnection {
 
         //TODO: change password back
 
-        String password = "gigolo69";
+        String password = "";
         String username = "root";
         String URL = "jdbc:mysql://localhost:3306/laboratory8";
         config.setJdbcUrl(URL);
