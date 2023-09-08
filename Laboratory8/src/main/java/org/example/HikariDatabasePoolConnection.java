@@ -20,7 +20,7 @@ public class HikariDatabasePoolConnection {
 
         //TODO: change password back
 
-        String password = "";
+        String password = "gigolo69";
         String username = "root";
         String URL = "jdbc:mysql://localhost:3306/laboratory8";
         config.setJdbcUrl(URL);
@@ -29,6 +29,8 @@ public class HikariDatabasePoolConnection {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        config.setConnectionTimeout(300000);
+        config.setIdleTimeout(120000);
         hikariPool = new HikariDataSource(config);
     }
 

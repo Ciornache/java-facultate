@@ -24,9 +24,7 @@ public class AlbumDAO {
         return instance;
     }
 
-    public void addAlbum(Album album) {
-
-        try {
+    public void addAlbum(Album album) throws SQLException, ClassNotFoundException {
             connection = Database.getConnection();
             Statement st = connection.createStatement();
             String sqlStatement = "INSERT INTO ALBUM VALUES(" + album.insertForm() + ");";
@@ -34,10 +32,6 @@ public class AlbumDAO {
             st.executeUpdate(sqlStatement);
             albumList.add(album);
             connection.close();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void deleteAlbum(Album album) {
@@ -55,7 +49,7 @@ public class AlbumDAO {
         }
     }
 
-    public void updateAlbum(int album_id, Album album) {
+    public void updateAlbum(int album_id, Album album) throws SQLException, ClassNotFoundException {
         Album album2 = findAlbumById(album_id);
         assert album2 != null;
         album.setAlbum_id(album2.getAlbum_id());
