@@ -1,0 +1,49 @@
+USE laboratory9; /// Pick the appropiate database
+
+
+/// Create the Entities
+
+CREATE TABLE genre(
+   id INT NOT NULL,
+   name VARCHAR(150) UNIQUE,
+   CONSTRAINT PK_Genre Primary Key(id));
+
+CREATE TABLE artist(
+   id INT NOT NULL,
+   name VARCHAR(150) NOT NULL,
+   birth_date DATE NOT NULL,
+   CONSTRAINT PK_Artist Primary Key(id));
+
+CREATE TABLE album(
+   id INT NOT NULL,
+   title VARCHAR(150) NOT NULL,
+   release_year VARCHAR(10) NOT NULL,
+   artist_id INT NOT NULL,
+   CONSTRAINT PK_Album Primary Key(id),
+   CONSTRAINT FK_Album FOREIGN KEY(artist_id) REFERENCES artist(id));
+
+
+CREATE TABLE history(
+   id INT NOT NULL,
+   album_id INT NOT NULL,
+   genre_id INT NOT NULL,
+   CONSTRAINT PK_History Primary Key(id),
+   CONSTRAINT FK_History Foreign Key(album_id) REFERENCES album(id),
+   CONSTRAINT FK_History2 Foreign Key(genre_id) REFERENCES genre(id));
+
+// Alter Constraints
+
+ALTER TABLE album DROP CONSTRAINT FK_Album;
+ALTER TABLE album Add CONSTRAINT FK_ALBUM FOREIGN KEY(artist_id) REFERENCES artist(id) ON DELETE CASCADE;
+
+// Use this for every Primary Key for mapping to work
+
+Alter table album
+DROP CONSTRAINT FK_ALBUM;
+
+Alter table artist
+Modify id INT NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE album
+ADD CONSTRAINT FK_ALBUM FOREIGN KEY(artist_id) REFERENCES artist(id);
+
