@@ -22,6 +22,7 @@ public class AlbumRepositoryImpl implements AlbumRepository {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query query = em.createNamedQuery("Album.findById");
+        query.setParameter("id", id);
         List<Album> albumList = query.getResultList();
         em.close();
         if(albumList.size() == 0)
@@ -35,6 +36,7 @@ public class AlbumRepositoryImpl implements AlbumRepository {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query query = em.createNamedQuery("Album.findByTitle");
+        query.setParameter("title", name);
         List<Album> albumList = query.getResultList();
         em.close();
         if(albumList.size() == 0)

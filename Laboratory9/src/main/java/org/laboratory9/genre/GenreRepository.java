@@ -7,9 +7,9 @@ import java.util.List;
 public interface GenreRepository {
     void create(Genre genre);
 
-    Genre findGenreById(int id);
+    Genre findById(int id);
 
-    Genre findGenreByName(String name);
+    Genre findByName(String name);
 
     List<Album> getAlbums(Genre Genre);
 

@@ -1,14 +1,17 @@
 package org.laboratory9.genre;
 
 import jakarta.persistence.*;
+import org.laboratory9.album.Album;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "genre")
 @NamedNativeQuery(name = "Genre.selectAll", query = "Select * from genre", resultClass = Genre.class)
 @NamedNativeQuery(name = "Genre.findById", query = "Select * from genre as a where a.id = :id", resultClass = Genre.class)
 @NamedNativeQuery(name = "Genre.findByName", query = "Select * from genre as a where a.name = :name", resultClass = Genre.class)
+@NamedNativeQuery(name = "Genre.reset", query = "Delete from genre")
 public class Genre implements Serializable {
 
     @Id

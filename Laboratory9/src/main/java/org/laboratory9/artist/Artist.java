@@ -16,6 +16,7 @@ import java.util.List;
 @NamedNativeQuery(name = "Artist.getAlbums", query = "SELECT al.id, al.title, al.release_year, al.artist_id from album as al\n" +
                                                        "INNER JOIN artist as ar ON al.artist_id = ar.id\n" +
                                                         "WHERE al.artist_id = :id", resultClass = Album.class)
+@NamedNativeQuery(name = "Artist.reset", query = "Delete from artist")
 public class Artist implements Serializable {
 
     @Id

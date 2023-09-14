@@ -2,14 +2,17 @@ package org.laboratory9.album;
 
 import jakarta.persistence.*;
 import org.laboratory9.artist.Artist;
+import org.laboratory9.genre.Genre;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "album")
 @NamedNativeQuery(name = "Album.selectAll", query = "Select * from album", resultClass = Album.class)
 @NamedNativeQuery(name = "Album.findById", query = "Select * from album as a where a.id = :id", resultClass = Album.class)
 @NamedNativeQuery(name = "Album.findByTitle", query = "Select * from album as a where a.title = :title", resultClass = Album.class)
+@NamedNativeQuery(name = "Album.reset", query = "Delete from album")
 public class Album implements Serializable {
 
     @Id

@@ -2,7 +2,7 @@ package org.laboratory9.album;
 
 import org.laboratory9.artist.Artist;
 
-public interface AlbumRepository {
+public interface AlbumRepository  {
 
     void create(Album album);
 

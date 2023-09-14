@@ -1,0 +1,897 @@
+176
+Bob Dylan
+1941-05-24
+The Beatles
+1960-08-01
+Madonna
+1958-08-16
+Michael Jackson
+1958-08-29
+Queen
+1970-06-27
+Adele
+1988-05-05
+Beyonce
+1981-09-04
+Ed Sheeran
+1991-02-17
+Elvis Presley
+1935-01-08
+Frank Sinatra
+1915-12-12
+Taylor Swift
+1989-12-13
+David Bowie
+1947-01-08
+Prince
+1958-06-07
+Whitney Houston
+1963-08-09
+Mariah Carey
+1969-03-27
+U2
+1976-09-25
+Bruce Springsteen
+1949-09-23
+Madonna
+1958-08-16
+Stevie Wonder
+1950-05-13
+Rihanna
+1988-02-20
+Eminem
+1972-10-17
+Led Zeppelin
+1968-09-25
+The Rolling Stones
+1962-01-01
+The Eagles
+1971-06-01
+Pink Floyd
+1965-03-01
+Coldplay
+1996-01-16
+Ariana Grande
+1993-06-26
+Katy Perry
+1984-10-25
+Drake
+1986-10-24
+Elton John
+1947-03-25
+Justin Bieber
+1994-03-01
+Metallica
+1981-10-28
+Taylor Swift
+1989-12-13
+Elton John
+1947-03-25
+Coldplay
+1996-01-16
+Pink Floyd
+1965-03-01
+Elvis Presley
+1935-01-08
+Metallica
+1981-10-28
+The Beatles
+1960-08-01
+Adele
+1988-05-05
+Madonna
+1958-08-16
+Michael Jackson
+1958-08-29
+Queen
+1970-06-27
+Beyonce
+1981-09-04
+Taylor Swift
+1989-12-13
+David Bowie
+1947-01-08
+Prince
+1958-06-07
+Whitney Houston
+1963-08-09
+Mariah Carey
+1969-03-27
+U2
+1976-09-25
+Bruce Springsteen
+1949-09-23
+Madonna
+1958-08-16
+Stevie Wonder
+1950-05-13
+Rihanna
+1988-02-20
+Eminem
+1972-10-17
+Led Zeppelin
+1968-09-25
+The Rolling Stones
+1962-01-01
+The Eagles
+1971-06-01
+Pink Floyd
+1965-03-01
+Coldplay
+1996-01-16
+Ariana Grande
+1993-06-26
+Katy Perry
+1984-10-25
+Drake
+1986-10-24
+Elton John
+1947-03-25
+Justin Bieber
+1994-03-01
+Metallica
+1981-10-28
+Taylor Swift
+1989-12-13
+Elton John
+1947-03-25
+Coldplay
+1996-01-16
+Pink Floyd
+1965-03-01
+Elvis Presley
+1935-01-08
+Metallica
+1981-10-28
+The Beatles
+1960-08-01
+Adele
+1988-05-05
+Madonna
+1958-08-16
+Michael Jackson
+1958-08-29
+Queen
+1970-06-27
+Beyonce
+1981-09-04
+Taylor Swift
+1989-12-13
+David Bowie
+1947-01-08
+Prince
+1958-06-07
+Whitney Houston
+1963-08-09
+Mariah Carey
+1969-03-27
+U2
+1976-09-25
+Bruce Springsteen
+1949-09-23
+Madonna
+1958-08-16
+Stevie Wonder
+1950-05-13
+Rihanna
+1988-02-20
+Eminem
+1972-10-17
+Led Zeppelin
+1968-09-25
+The Rolling Stones
+1962-01-01
+The Eagles
+1971-06-01
+Pink Floyd
+1965-03-01
+Coldplay
+1996-01-16
+Ariana Grande
+1993-06-26
+Katy Perry
+1984-10-25
+Drake
+1986-10-24
+Elton John
+1947-03-25
+Justin Bieber
+1994-03-01
+Metallica
+1981-10-28
+Taylor Swift
+1989-12-13
+Elton John
+1947-03-25
+Coldplay
+1996-01-16
+Pink Floyd
+1965-03-01
+Elvis Presley
+1935-01-08
+Metallica
+1981-10-28
+The Beatles
+1960-08-01
+Adele
+1988-05-05
+Madonna
+1958-08-16
+Michael Jackson
+1958-08-29
+Queen
+1970-06-27
+Beyonce
+1981-09-04
+Taylor Swift
+1989-12-13
+David Bowie
+1947-01-08
+Prince
+1958-06-07
+Whitney Houston
+1963-08-09
+Mariah Carey
+1969-03-27
+U2
+1976-09-25
+Bruce Springsteen
+1949-09-23
+Madonna
+1958-08-16
+Stevie Wonder
+1950-05-13
+Rihanna
+1988-02-20
+Eminem
+1972-10-17
+Led Zeppelin
+1968-09-25
+The Rolling Stones
+1962-01-01
+The Eagles
+1971-06-01
+Pink Floyd
+1965-03-01
+Coldplay
+1996-01-16
+Ariana Grande
+1993-06-26
+Katy Perry
+1984-10-25
+Drake
+1986-10-24
+Elton John
+1947-03-25
+Justin Bieber
+1994-03-01
+Metallica
+1981-10-28
+Taylor Swift
+1989-12-13
+Elton John
+1947-03-25
+Coldplay
+1996-01-16
+Pink Floyd
+1965-03-01
+Elvis Presley
+1935-01-08
+Metallica
+1981-10-28
+The Beatles
+1960-08-01
+Adele
+1988-05-05
+Madonna
+1958-08-16
+Michael Jackson
+1958-08-29
+Queen
+1970-06-27
+Beyonce
+1981-09-04
+Taylor Swift
+1989-12-13
+David Bowie
+1947-01-08
+Prince
+1958-06-07
+Whitney Houston
+1963-08-09
+Mariah Carey
+1969-03-27
+U2
+1976-09-25
+Bruce Springsteen
+1949-09-23
+Madonna
+1958-08-16
+Stevie Wonder
+1950-05-13
+Rihanna
+1988-02-20
+Eminem
+1972-10-17
+Led Zeppelin
+1968-09-25
+The Rolling Stones
+1962-01-01
+The Eagles
+1971-06-01
+Pink Floyd
+1965-03-01
+Coldplay
+1996-01-16
+Ariana Grande
+1993-06-26
+Katy Perry
+1984-10-25
+Drake
+1986-10-24
+Elton John
+1947-03-25
+Justin Bieber
+1994-03-01
+Metallica
+1981-10-28
+Taylor Swift
+1989-12-13
+Elton John
+1947-03-25
+Coldplay
+1996-01-16
+Pink Floyd
+1965-03-01
+Elvis Presley
+1935-01-08
+Metallica
+1981-10-28
+The Beatles
+1960-08-01
+Adele
+1988-05-05
+338
+Rock
+Pop
+Jazz
+Country
+Hip-hop
+R&B
+Reggae
+Classical
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Disco
+Soul
+Alternative
+Indie
+Rap
+Latin
+Funk
+EDM
+Reggaeton
+Trap
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+Classical
+Country
+Jazz
+Rock
+Pop
+Hip-hop
+Blues
+Electronic
+Folk
+Heavy Metal
+Punk
+Soul
+Alternative
+Rap
+Funk
+Reggaeton
+Trap
+Country
+Rock
+Rap
+Soul
+Pop
+Jazz
+Electronic
+Folk
+Blues
+Hip-hop
+Punk
+Heavy Metal
+Alternative
+Reggaeton
+R&B
+Indie
+EDM
+Latin
+68
+Highway 61 Revisited
+1965
+Abbey Road
+1969
+Like a Prayer
+1989
+Thriller
+1982
+A Night at the Opera
+1975
+21
+2011
+Lemonade
+2016
+Divide
+2017
+The King of Rock 'n' Roll
+1956
+Sinatra at the Sands
+1966
+1989
+2014
+Blackstar
+2016
+Purple Rain
+1984
+Whitney
+1987
+Daydream
+1995
+The Joshua Tree
+1987
+Born in the USA
+1984
+Like a Virgin
+1984
+Innervisions
+1973
+Anti
+2016
+The Dark Side of the Moon
+1973
+Back to Black
+2006
+Kind of Blue
+1959
+Johnny Cash at San Quentin
+1969
+Illmatic
+1994
+Blonde on Blonde
+1966
+Sgt. Peppers Lonely Hearts Club Band
+1967
+Ray of Light
+1998
+Bad
+1987
+Songs in the Key of Life
+1976
+Good Girl Gone Bad
+2007
+The Marshall Mathers LP
+2000
+The Wall
+1979
+Hotel California
+1976
+Confessions on a Dance Floor
+2005
+25
+2015
+Dangerously In Love
+2003
+Multiply
+2014
+Nevermind
+1991
+Sgt. Peppers Lonely Hearts Club Band
+1967
+Hotel California
+1976
+25
+2015
+Good Girl Gone Bad
+2007
+Songs in the Key of Life
+1976
+Nevermind
+1991
+Blonde on Blonde
+1966
+Illmatic
+1994
+Johnny Cash at San Quentin
+1969
+Kind of Blue
+1959
+Back to Black
+2006
+The Dark Side of the Moon
+1973
+Anti
+2016
+Innervisions
+1973
+Like a Virgin
+1984
+Born in the USA
+1984
+The Joshua Tree
+1987
+Daydream
+1995
+Whitney
+1987
+Purple Rain
+1984
+Blackstar
+2016
+1989
+2014
+Sinatra at the Sands
+1966
+The King of Rock 'n' Roll
+1956
+Divide
+2017
+Lemonade
+2016
+21
+2011
+A Night at the Opera
+1975
+Thriller
+1982
+Like a Prayer
+1989
+Abbey Road
+1969
+Highway 61 Revisited
+1965
+Hotel California
+1976
+25
+2015
+Good Girl Gone Bad
+2007
+Songs in the Key of Life
+1976
+Nevermind
+1991
+Blonde on Blonde
+1966
+Illmatic
+1994
+Johnny Cash at San Quentin
+1969
+Kind of Blue
+1959
+Back to Black
+2006
+The Dark Side of the Moon
+1973
+Anti
+2016
+Innervisions
+1973
+Like a Virgin
+1984
+Born in the USA
+1984
+The Joshua Tree
+1987
+Daydream
+1995
+Whitney
+1987
+Purple Rain
+1984
+Blackstar
+2016
+1989
+2014
+Sinatra at the Sands
+1966
+The King of Rock 'n' Roll
+1956
+Divide
+2017
+Lemonade
+2016
+21
+2011
+A Night at the Opera
+1975
+Thriller
+1982
+Like a Prayer
+1989
+Abbey Road
+1969
+Highway 61 Revisited
+1965

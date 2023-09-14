@@ -20,12 +20,11 @@ public class ArtistDAOImpl implements ArtistDAO {
         EntityManager em = (EntityManager) emf.createEntityManager();
         em.getTransaction().begin();
 
-        if(!em.contains(artist))
+        if(em.contains(artist))
             artist = em.merge(artist);
 
         em.persist(artist);
         em.getTransaction().commit();
-
         em.close();
     }
 
@@ -79,7 +78,34 @@ public class ArtistDAOImpl implements ArtistDAO {
         em.close();
     }
 
+    @Override
+    public List<Artist> getAllArtist() {
+        EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNamedQuery("Artist.selectAll");
+        List<Artist> list = query.getResultList();
+        em.close();
+
+        return list;
+    }
+
+    @Override
+    public void reset() {
+        EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        Query query = em.createNamedQuery("Artist.reset");
+        query.executeUpdate();
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
     public ArtistDAOImpl() {};
+
 
 
 }

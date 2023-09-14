@@ -48,7 +48,6 @@ public class ArtistRepositoryImpl implements ArtistRepository{
     {
         EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
 
         Query query = em.createNamedQuery("Artist.getAlbums");
         query.setParameter("id", id);

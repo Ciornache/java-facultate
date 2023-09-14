@@ -1,67 +1,101 @@
 package org.laboratory9;
 
 import jakarta.persistence.EntityManager;
-import org.laboratory9.album.Album;
-import org.laboratory9.album.AlbumDAOImpl;
-import org.laboratory9.album.AlbumRepository;
-import org.laboratory9.album.AlbumRepositoryImpl;
+import org.laboratory9.album.*;
+import org.laboratory9.album_record.AlbumRecord;
+import org.laboratory9.album_record.AlbumRecordRepository;
+import org.laboratory9.album_record.AlbumRecordRepositoryImpl;
 import org.laboratory9.artist.*;
-import org.laboratory9.genre.Genre;
-import org.laboratory9.genre.GenreDAO;
-import org.laboratory9.genre.GenreDAOImpl;
+import org.laboratory9.genre.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        try {
-            AlbumDAOImpl albumDAO = new AlbumDAOImpl();
-            ArtistDAOImpl artistDAO = new ArtistDAOImpl();
+    public static void main(String[] args) throws FileNotFoundException {
 
-            // Create four artists
-            Artist artist1 = new Artist("Artist 1 Name", "1990-01-01");
-            Artist artist2 = new Artist("Artist 2 Name", "1985-03-15");
-            Artist artist3 = new Artist("Artist 3 Name", "1995-07-20");
-            Artist artist4 = new Artist("Artist 4 Name", "1980-12-05");
+        /// Initialize DAO classes
 
-            // Persist the artists
+        ArtistDAO artistDAO = new ArtistDAOImpl();
+        AlbumDAO albumDAO = new AlbumDAOImpl();
+        GenreDAO genreDAO = new GenreDAOImpl();
 
-            // Create and associate albums with artists
-            Album album1 = new Album("Album 1 Title", "2021", artist1);
-            Album album2 = new Album("Album 2 Title", "2022", artist2);
-            Album album3 = new Album("Album 3 Title", "2023", artist3);
-            Album album4 = new Album("Album 4 Title", "2024", artist4);
+        /// Initialize repositories
+        AlbumRecordRepository arr = new AlbumRecordRepositoryImpl();
 
-//            artist1.getAlbumList().add(album1);
-//            artist2.getAlbumList().add(album2);
-//            artist3.getAlbumList().add(album3);
-//            artist4.getAlbumList().add(album4);
+        /// Reseting the database
 
-            artistDAO.createArtist(artist1);
-            artistDAO.createArtist(artist2);
-            artistDAO.createArtist(artist3);
-            artistDAO.createArtist(artist4);
+        arr.reset();
+        albumDAO.reset();
+        artistDAO.reset();
+        genreDAO.reset();
 
-            System.out.println(artist1.getId());
+        /// Populating the database and testing
 
-            albumDAO.createAlbum(album1);
-            albumDAO.createAlbum(album2);
-            albumDAO.createAlbum(album3);
-            albumDAO.createAlbum(album4);
+        String fileName = "TestingUnits/Test2.txt";
 
-//            Object id = EntityBuilder.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(artist1);
-//            System.out.println(id);
-//
-//            ArtistRepository artistRepository = new ArtistRepositoryImpl();
-//
-//            System.out.println();
-//
-//            List<Album> albumList = artistRepository.getArtistAlbums(artist1.getId());
-//            System.out.println(albumList);
+        Scanner scanner = new Scanner(new File(fileName));
+        int numberOfArtists = scanner.nextInt();
+        scanner.nextLine();
+        for(int inst = 1; inst <= numberOfArtists; ++inst) {
+
+            String name = scanner.nextLine();
+            String birthDate = scanner.nextLine();
+
+            Artist artist = new Artist(name, birthDate);
+            artistDAO.createArtist(artist);
         }
-        catch (Exception e) {
-            e.printStackTrace();
+
+        int numberOfGenres = scanner.nextInt();
+        System.out.println(numberOfGenres);
+        scanner.nextLine();
+        for(int inst = 1;inst <= numberOfGenres; ++inst) {
+            String name = scanner.nextLine();
+            Genre genre = new Genre(name);
+            try {
+                genreDAO.createGenre(genre);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
+        List<Artist> artistList = artistDAO.getAllArtist();
+
+        int numberOfAlbums = scanner.nextInt();
+        scanner.nextLine();
+
+        for(int inst = 1; inst <= numberOfAlbums; ++inst) {
+
+            String name = scanner.nextLine();
+            String releaseYear = scanner.nextLine();
+
+            Random random = new Random();
+            Artist artist = artistList.get(Math.abs(random.nextInt()) % artistList.size());
+
+            Album album = new Album(name, releaseYear, artist);
+            albumDAO.createAlbum(album);
+        }
+
+        List<Genre> genres = genreDAO.getAllGenres();
+        List<Album> albums = albumDAO.getAllAlbums();
+
+        int records = 50;
+
+        for(int inst = 1; inst <= records; ++inst) {
+            Random random = new Random();
+            Genre genre = genres.get(Math.abs(random.nextInt()) % genres.size());
+            Album album = albums.get(Math.abs(random.nextInt()) % albums.size());
+            arr.create(album, genre);
+        }
+
+
+        EntityBuilder.getEntityManagerFactory().close();
+
     }
 
 }

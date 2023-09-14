@@ -13,4 +13,5 @@ public interface ArtistRepository {
 
     List<Album> getArtistAlbums(int id);
 
+
 }

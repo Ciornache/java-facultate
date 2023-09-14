@@ -1,5 +1,7 @@
 package org.laboratory9.genre;
 
+import java.util.List;
+
 public interface GenreDAO {
 
     void createGenre(Genre genre);
@@ -9,6 +11,10 @@ public interface GenreDAO {
     void deleteGenre(int id);
 
     void printAllGenres();
+
+    void reset();
+
+    List<Genre> getAllGenres();
 
     /// CRUD - Create, Retrieve, Update, Delete
 

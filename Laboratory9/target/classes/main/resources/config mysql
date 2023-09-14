@@ -23,8 +23,8 @@ CREATE TABLE album(
    CONSTRAINT FK_Album FOREIGN KEY(artist_id) REFERENCES artist(id));
 
 
-CREATE TABLE history(
-   id INT NOT NULL,
+CREATE TABLE album_record(
+   id INT NOT NULL AUTO_INCREMENT,
    album_id INT NOT NULL,
    genre_id INT NOT NULL,
    CONSTRAINT PK_History Primary Key(id),

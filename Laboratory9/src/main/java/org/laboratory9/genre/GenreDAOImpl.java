@@ -18,7 +18,7 @@ public class GenreDAOImpl implements GenreDAO {
         EntityManager em = (EntityManager) emf.createEntityManager();
         em.getTransaction().begin();
 
-        if(!em.contains(genre))
+        if(em.contains(genre))
             genre = em.merge(genre);
 
         em.persist(genre);
@@ -66,7 +66,7 @@ public class GenreDAOImpl implements GenreDAO {
         EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
 
-        Query query = em.createNamedQuery("genre.selectAll");
+        Query query = em.createNamedQuery("Genre.selectAll");
         List<Genre> list = query.getResultList();
         for(Genre genre : list) {
             System.out.println("Name is " + genre.getName());
@@ -75,6 +75,31 @@ public class GenreDAOImpl implements GenreDAO {
         }
 
         em.close();
+    }
+
+    @Override
+    public void reset() {
+        EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        Query query = em.createNamedQuery("Genre.reset");
+        query.executeUpdate();
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
+    public List<Genre> getAllGenres() {
+        EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNamedQuery("Genre.selectAll");
+        List<Genre> list = query.getResultList();
+        em.close();
+        return list;
     }
 
     public GenreDAOImpl() {};

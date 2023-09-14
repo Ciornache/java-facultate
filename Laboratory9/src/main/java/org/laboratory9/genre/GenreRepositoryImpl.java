@@ -18,7 +18,7 @@ public class GenreRepositoryImpl implements GenreRepository{
     }
 
     @Override
-    public Genre findGenreById(int id) {
+    public Genre findById(int id) {
         EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         Query query = em.createNamedQuery("Genre.findById");
@@ -30,7 +30,7 @@ public class GenreRepositoryImpl implements GenreRepository{
     }
 
     @Override
-    public Genre findGenreByName(String name) {
+    public Genre findByName(String name) {
         EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         Query query = em.createNamedQuery("Genre.findByName");

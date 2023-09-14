@@ -14,7 +14,7 @@ public class AlbumDAOImpl implements AlbumDAO{
         EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        if(!em.contains(album))
+        if(em.contains(album))
             album = em.merge(album);
         em.persist(album);
         em.getTransaction().commit();
@@ -56,5 +56,29 @@ public class AlbumDAOImpl implements AlbumDAO{
             System.out.println();
         }
         em.close();
+    }
+
+    @Override
+    public void reset() {
+        EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Album.reset");
+        query.executeUpdate();
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
+    public List<Album> getAllAlbums() {
+        EntityManagerFactory emf = EntityBuilder.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Album.selectAll");
+        List<Album> albums = query.getResultList();
+        em.close();
+        return albums;
     }
 }
